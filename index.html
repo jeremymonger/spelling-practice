@@ -1,0 +1,13 @@
+
+<body onkeypress="keyPressed(event);">
+  <p id="letters"></p>
+</body>
+
+
+<script>
+function keyPressed(event){
+  var code = event.charCode || event.keyCode;
+  var letter = String.fromCharCode(code);
+  document.getElementById('letters').innerHTML += letter;
+}
+</script>

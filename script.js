@@ -5,7 +5,7 @@ var currentChar = 0;
 // var wordList = [
 //   //Alliteration
 //   [['cat', 'car', 'cop'],
-//   ['bar', 'bar', 'bug',	'bun', 'bit',	'best'],
+//   ['bat', 'bar', 'bug',	'bun', 'bit',	'best'],
 //   ['hat',	'hug', 'hop',	'hit'],
 //   ['mat',	'mug', 'mop'],
 // 	['far',	'fun', 'fit'],
@@ -21,14 +21,14 @@ var currentChar = 0;
 // 	['bit',	'hit', 'fit',	'pit'],
 // 	['best','rest','test']]
 // ];
-tempWordList = ['cat', 'car', 'cop',
-'bar', 'bar', 'bug',	'bun', 'bit',	'best',
+tempWordList = ['cat', 'car',
+'bat', 'bar', 'bug',	'bun', 'bit',
 'hat',	'hug', 'hop',	'hit',
 'mat',	'mug', 'mop',
 'far',	'fun', 'fit',
-'rat',	'rug', 'run', 'rest',
+'rat',	'rug', 'run',
 'pat',	'pop', 'pit',
-'tar',	'tug', 'top',	'test'
+'tug', 'top'
 ];
 
 currentWord = tempWordList[Math.floor(
@@ -36,7 +36,7 @@ currentWord = tempWordList[Math.floor(
 
 
 document.getElementById('word').innerHTML = currentWord;
-
+document.getElementById('image').src = 'images/' + currentWord + '.jpg';
 function keyPressed(event){
   var code = event.charCode || event.keyCode;
   var letter = String.fromCharCode(code);
@@ -50,6 +50,7 @@ function keyPressed(event){
       Math.random()*tempWordList.length)];
 
       document.getElementById('word').innerHTML = currentWord;
+      document.getElementById('image').src = 'images/'+currentWord+'.jpg';
       document.getElementById('spelling').innerHTML = '';
 
   }

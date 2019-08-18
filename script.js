@@ -1,7 +1,8 @@
 var tempWordList = [];
 var currentWord = '';
 var currentChar = 0;
-
+var sound;
+var started = 0;
 // var wordList = [
 //   //Alliteration
 //   [['cat', 'car', 'cop'],
@@ -31,27 +32,38 @@ tempWordList = ['cat', 'car',
 'tug', 'top'
 ];
 
-currentWord = tempWordList[Math.floor(
-  Math.random()*tempWordList.length)];
 
 
-document.getElementById('word').innerHTML = currentWord;
-document.getElementById('image').src = 'images/' + currentWord + '.jpg';
 function keyPressed(event){
-  var code = event.charCode || event.keyCode;
-  var letter = String.fromCharCode(code);
-  if(letter === currentWord[currentChar]){
-    document.getElementById('spelling').innerHTML += letter;
-    currentChar++;
-  }
-  else if (currentChar > currentWord.length-1){
-    currentChar = 0;
+  if (started === 0){
+    started = 1;
     currentWord = tempWordList[Math.floor(
       Math.random()*tempWordList.length)];
 
-      document.getElementById('word').innerHTML = currentWord;
-      document.getElementById('image').src = 'images/'+currentWord+'.jpg';
-      document.getElementById('spelling').innerHTML = '';
+
+    document.getElementById('word').innerHTML = currentWord;
+    sound = new Audio('sound/' + currentWord + Math.floor(Math.random()*2) + '.mp3');
+    sound.play();
+    document.getElementById('image').src = 'images/' + currentWord + '.jpg';
+  }
+  else{
+    var code = event.charCode || event.keyCode;
+    var letter = String.fromCharCode(code);
+    if(letter === currentWord[currentChar]){
+      document.getElementById('spelling').innerHTML += letter;
+      currentChar++;
+    }
+    else if (currentChar > currentWord.length-1){
+      currentChar = 0;
+      currentWord = tempWordList[Math.floor(
+        Math.random()*tempWordList.length)];
+
+        document.getElementById('word').innerHTML = currentWord;
+        sound = new Audio('sound/'+ currentWord + Math.floor(Math.random()*2) + '.mp3');
+        sound.play();
+        document.getElementById('image').src = 'images/'+currentWord+'.jpg';
+        document.getElementById('spelling').innerHTML = '';
+      }
 
   }
 }

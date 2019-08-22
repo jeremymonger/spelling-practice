@@ -35,8 +35,12 @@ tempWordList = ['cat', 'car',
 
 
 function keyPressed(event){
+
+  // Ensure user has "interacted" with webpage, otherwise
+  // many browsers will refuse to play sound
   if (started === 0){
     started = 1;
+
     currentWord = tempWordList[Math.floor(
       Math.random()*tempWordList.length)];
 
@@ -47,12 +51,16 @@ function keyPressed(event){
     document.getElementById('image').src = 'images/' + currentWord + '.jpg';
   }
   else{
+    //Get pressed key and convert to a character
     var code = event.charCode || event.keyCode;
     var letter = String.fromCharCode(code);
+
+    //If correct character, update page
     if(letter === currentWord[currentChar]){
       document.getElementById('spelling').innerHTML += letter;
       currentChar++;
     }
+    //If word is completed and another key pressed, chose new word
     else if (currentChar > currentWord.length-1){
       currentChar = 0;
       currentWord = tempWordList[Math.floor(
